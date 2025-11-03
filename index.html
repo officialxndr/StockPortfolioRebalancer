@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nested Portfolio Rebalancer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+        <header>
+        <button id="startOverBtn">⚠️ Start Over</button>
+        <button id="darkModeToggle">🌙 Toggle Light Mode</button>
+    </header>
+
+            <nav class="tabs">
+        <button class="tab-button active" data-tab="import">Import CSV</button>
+        <button class="tab-button" data-tab="pies">Pies & Controls</button>
+        <button class="tab-button" data-tab="overview">Overview & Preview</button>
+    </nav>
+
+    <main>
+        <div id="import-content" class="tab-content active">
+            <div class="holdings-control import-panel">
+                <h2>Import Portfolio from CSV</h2>
+                <p>Upload your Fidelity CSV file to import your current positions.</p>
+                
+                <div class="import-step" id="upload-step">
+                    <h3>Step 1: Upload CSV File</h3>
+                    <input type="file" id="csvFileInput" accept=".csv" class="file-input">
+                    <button id="parseCSVBtn" class="action-button" disabled>Parse CSV</button>
+                </div>
+
+                <div class="import-step" id="account-step" style="display: none;">
+                    <h3>Step 2: Select Account</h3>
+                    <select id="accountSelect" class="account-select">
+                        <option value="">-- Select an account --</option>
+                    </select>
+                </div>
+
+                                <div class="import-step" id="mapping-step" style="display: none;">
+                    <h3>Step 3: Assign Positions to Categories</h3>
+                    <p>For each position, select which category it belongs to. Each position will be added as a new holding in that category.</p>
+                    <div id="positionsList"></div>
+                    <button id="importPositionsBtn" class="add-button" style="display: none;">Import Positions</button>
+                </div>
+            </div>
+        </div>
+
+                                <div id="pies-content" class="tab-content">
+            <div class="pie-chart-container">
+                <canvas id="portfolioPieChart"></canvas>
+                <div id="totalPercentageDisplay" class="total-display">Total: 100%</div>
+                
+                <div class="chart-controls">
+                    <button id="chartToggleBtn" class="action-button" data-view="top">View Sub-Allocations (Stocks)</button>
+                </div>
+            </div>
+
+            <div class="holdings-control">
+                <h2>Investment Amount</h2>
+                <div class="input-group">
+                    <label for="linkedSpendAmount">Total Investment ($):</label>
+                    <input type="number" id="linkedSpendAmount" value="1000" min="0" step="1" class="styled-input">
+                </div>
+                
+                <h2>Top-Level Pies Allocation</h2>
+                <div id="piesList">
+                    </div>
+                <button id="addPieBtn" class="add-button">+ Add New Pie (e.g., Real Estate)</button>
+                
+                <hr>
+
+                <h2>Sub-Holding Allocation</h2>
+                <div id="subHoldingsControls">
+                    <p>Select a top-level pie above to view and adjust its holdings.</p>
+                </div>
+            </div>
+        </div>
+        
+                <div id="overview-content" class="tab-content">
+            <div class="holdings-control overview-panel">
+                <h2>Investment Preview</h2>
+                <div class="input-group">
+                    <label for="spendAmount">Input Investment Amount ($):</label>
+                    <input type="number" id="spendAmount" value="1000" min="0" step="1" class="styled-input">
+                </div>
+                
+                <h2>Detailed Portfolio Breakdown</h2>
+                <div id="overviewDetails">
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
