@@ -38,7 +38,7 @@ Since this is a static site (HTML, CSS, JavaScript), you can just open the `inde
 
 ### Option 2: Docker Compose
 This repository includes a `Dockerfile` and a `docker-compose.yml` file to serve the site using Nginx, which is a more realistic way to test a web application.
-
+```
 services:
   portfolio-rebalancer:
     container_name: portfolio-rebalancer-app
@@ -47,4 +47,5 @@ services:
       - '18673:80'
     restart: unless-stopped
 version: '3.8'
+```
 
